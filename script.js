@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function actualizarLabelsDeSucesos() {
         if (!sucesosContainer) return;
         const area = areaSelect.value;
-        let unidadesLabelText = 'Unidade/ MEtros'; // <-- MODIFICADO
+        let unidadesLabelText = 'Unidades/Metros'; // <-- CORREGIDO
         if (area === 'espuma') {
             unidadesLabelText = 'Metros Cúbicos (m³):';
         } else if (area === 'fibra') {
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Determinar la etiqueta correcta para las unidades según el área seleccionada
         const areaSeleccionada = areaSelect.value;
-        let unidadesLabelText = 'Unidade/ MEtros'; // <-- MODIFICADO
+        let unidadesLabelText = 'Unidades/Metros'; // <-- CORREGIDO
         if (areaSeleccionada === 'espuma') {
             unidadesLabelText = 'Metros Cúbicos (m³):';
         } else if (areaSeleccionada === 'fibra') {
@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button type="button" class="btn-remove-row" onclick="eliminarFila('suceso_entry_${idCounter}', 'sucesos-container', 'Suceso')">Eliminar Suceso ${displayIndex}</button>
                     <hr class="dynamic-row-divider">
-                </div>`; // <-- MODIFICADO: input type="text" y placeholder actualizado.
+                </div>`;
     }
 
     function anadirNuevaFilaSuceso() {
