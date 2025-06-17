@@ -2,10 +2,10 @@ const APP_CONFIG = {
 
     // Mensajes predefinidos para el correo electrónico por área
     mensajesPredefinidosPorArea: {
-        'colchones': 'Plan de colchones semanales 1950',
-        'accesorios': 'Plan de accesorios semanales: [Tu meta aquí]',
-        'bases': 'Plan de bases semanales: [Tu meta aquí]',
-        'muebles': 'Plan de muebles semanales: [Tu meta aquí]',
+        'colchones': 'Plan semanal: 7.189',
+        'accesorios': 'Plan de accesorios semanal: 18.484',
+        'bases': 'Plan de bases semanales: 6.204',
+        'muebles': 'Plan de muebles semanales: 1.001',
         'textil': '',
         'metalurgia': '',
         'fibra': '',
