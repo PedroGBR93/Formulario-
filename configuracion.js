@@ -16,9 +16,9 @@ const APP_CONFIG = {
     emailMap: {
         colchones: 'felipe.ferreira@rosen.cl',
         accesorios: 'cristobal.mansilla@rosen.cl',
-        bases: 'cristan.fincheira@rosen.cl',
+        bases: 'cristian.fincheira@rosen.cl',
         muebles: 'victor.cortes@rosen.cl',
-        textil: 'susana-gutierrez@rosen.cl',
+        textil: 'susana.gutierrez@rosen.cl',
         metalurgia: 'mauricio.parada@rosen.cl',
         fibra: 'leonardo.morales@rosen.cl',
         espuma: 'contardo.zambrano@rosen.cl'
