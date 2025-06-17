@@ -14,7 +14,7 @@ const APP_CONFIG = {
 
     // Mapa de correos para el envío de reportes
     emailMap: {
-        colchones: 'pedro.barrientos@rosen.cl',
+        colchones: 'felipe.ferreira@rosen.cl',
         accesorios: 'cristobal.mansilla@rosen.cl',
         bases: 'cristan.fincheira@rosen.cl',
         muebles: 'victor.cortes@rosen.cl',
