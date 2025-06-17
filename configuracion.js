@@ -173,13 +173,13 @@ const APP_CONFIG = {
         muebles: ["Corte", "Confección", "Pegado de Cojines", "Llenado", "Armado Estructura", "Tapizado", "Embalaje", "Celula Reclinables"],
         textil: ["Multiaguja", "Uniaguja", "Encintado","Confección Fuelle","Area General"],
         metalurgia: ["Boney", "Cosisoft", "Pocket", "Area General"],
-        fibra: ["Masia 1", "Masia 2", "Masia 3", "Masia 4", "Desiladeshilachado", "Area General"],
-        espuma: ["Espuma Área 1", "Espuma Área 2", "Otro Espuma"]
+        fibra: ["Masia 1", "Masia 2", "Masia 3", "Masia 4", "Desilachado", "Area General"],
+        espuma: ["Laminado de rollo", "Inyectora", "Maxfoam", "Sector Carrusel", "Sector CNC", "Aglomerado", "Lamina Confort", "Enfundado Almohadas"]
     },
 
     // Opciones para el <select> de Tipo de Incidente en Sucesos
     tipoIncidenteOptions: [
-        "Falla De Maquina", "Producto Con Falla", "Producto Pendiente","Planificación", "Por Personal", "Seguridad", "Gestion De Mejora", "Otro Problema"
+        "Falla De Máquna", "Producto Con Falla", "Producto Pendiente","Planificación", "Por Personal", "Seguridad", "Gestion De Mejora", "Otro Problema"
     ],
 
     // Opciones para el <select> de Área Responsable en Sucesos
