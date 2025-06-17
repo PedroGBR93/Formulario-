@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reunión Diaria - Rosen</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="estilos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header class="header-rosen">
+        <img src="logo.ico" alt="Logo Rosen" class="logo">
+    </header>
+    <main class="main-container">
+        
+        <button id="btnResetLocalStorage" class="btn-reset" title="Reiniciar y borrar datos guardados">
+            <img src="reboot.png" alt="Reiniciar Formulario">
+        </button>
+
+        <div id="form-container" class="form-card">
+            <h1>Reunión Diaria</h1>
+            <p class="subtitle">Departamento de Gestión</p>
+            <form id="reunionForm" method="POST" action="#">
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="datetime-local" id="fecha" name="fecha" value="">
+                </div>
+                <div class="form-group">
+                    <label for="area">Área:</label>
+                    <select id="area" name="area">
+                        <option value="">Seleccione un Área</option>
+                        <option value="colchones">Colchones</option>
+                        <option value="accesorios">Accesorios/Sabanas/Plumones</option>
+                        <option value="bases">Bases</option>
+                        <option value="muebles">Muebles</option>
+                        <option value="textil">Textil</option>
+                        <option value="metalurgia">Metalurgia</option>
+                        <option value="fibra">Fibra</option>
+                        <option value="espuma">Espuma</option>
+                    </select>
+                </div>
+
+                <div id="section-fibra-scrap" class="conditional-section form-section standalone-field-group">
+                    <div class="form-group">
+                        <label for="ingreso_scrap_fibra">Ingreso Diario De Scrap En Metro:</label>
+                        <input type="number" id="ingreso_scrap_fibra" name="ingreso_scrap_fibra" min="0" placeholder="Ej: 150">
+                    </div>
+                </div>
+
+                <div id="section-espuma-scrap" class="conditional-section form-section standalone-field-group">
+                    <div class="form-group">
+                        <label for="salida_scrap_espuma">Salida Diaria De Scrap En Metro:</label>
+                        <input type="number" id="salida_scrap_espuma" name="salida_scrap_espuma" min="0" placeholder="Ej: 120">
+                    </div>
+                </div>
+
+                <div id="section-cumplimiento" class="conditional-section form-group">
+                    <label for="cumplimiento_slider">Porcentaje De Cumplimiento Día Anterior: <span id="cumplimiento_valor_display">0</span>%</label>
+                    <input type="range" id="cumplimiento_slider" class="slider" name="cumplimiento_visual" min="0" max="110" value="0" step="1">
+                    <input type="hidden" id="cumplimiento" name="cumplimiento" value="0">
+                </div>
+
+                <div class="form-section">
+                    <div id="section-colchones-prod" class="conditional-section form-section">
+                        <h2 id="title-colchones-prod">Colchones Producción Del Día</h2>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="plan_dia" id="label-colchones-plan">Plan Del Día</label><input type="number" id="plan_dia" name="colchones_prod[plan_dia]" min="0" placeholder="Ej: 50"></div>
+                            <div class="form-group-inline"><label for="producido" id="label-colchones-producido">Producido</label><input type="number" id="producido" name="colchones_prod[producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="por_vulcanizar">Por Vulcanizar</label><input type="number" id="por_vulcanizar" name="colchones_prod[por_vulcanizar]" min="0" placeholder="Ej: 5"></div>
+                            <div class="form-group-inline"><label for="por_cerrar">Por Cerrar</label><input type="number" id="por_cerrar" name="colchones_prod[por_cerrar]" min="0" placeholder="Ej: 2"></div>
+                        </div>
+                    </div>
+                    <div id="section-datos-relevante" class="conditional-section form-section">
+                        <h2 id="title-datos-relevante-colchones">Datos Relevante</h2>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="personal_cerrado">Personal En Cerrado</label><input type="number" id="personal_cerrado" name="datos_relevante[colchones][personal_cerrado]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="colchones_reparados">Colchones Reparados</label><input type="number" id="colchones_reparados" name="datos_relevante[colchones][reparados]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="espera_reparacion">Espera De Reparación</label><input type="number" id="espera_reparacion" name="datos_relevante[colchones][espera]" min="0" placeholder="Ej: 45"></div>
+                        </div>
+                    </div>
+                    <div id="section-accesorios-plan" class="conditional-section form-section">
+                        <h2 id="title-accesorios-plan">Plan Diario y Pendientes Día Anterior</h2>
+                        <h4 class="subsection-title">Accesorios Generales</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="plan_dia_accesorio_gen" id="label-accgen-plan">Plan Del Día Accesorio</label><input type="number" id="plan_dia_accesorio_gen" name="accesorios_plan[general][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="producido_accesorio_gen" id="label-accgen-prod">Producido Accesorios</label><input type="number" id="producido_accesorio_gen" name="accesorios_plan[general][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-accgen-diferencia">Pendiente</label><input type="number" id="diferencia_accesorio_gen" name="accesorios_plan[general][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                        <h4 class="subsection-title">Plumones</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="plan_dia_plumones" id="label-accplum-plan">Plan Del Día Plumones</label><input type="number" id="plan_dia_plumones" name="accesorios_plan[plumones][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="producido_plumones" id="label-accplum-prod">Producido Plumones</label><input type="number" id="producido_plumones" name="accesorios_plan[plumones][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-accplum-diferencia">Pendiente</label><input type="number" id="diferencia_plumones" name="accesorios_plan[plumones][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                        <h4 class="subsection-title">Almohadas</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="plan_dia_almohadas" id="label-accalm-plan">Plan Del Día Almohadas</label><input type="number" id="plan_dia_almohadas" name="accesorios_plan[almohadas][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="producido_almohadas" id="label-accalm-prod">Producido Almohadas</label><input type="number" id="producido_almohadas" name="accesorios_plan[almohadas][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-accalm-diferencia">Pendiente</label><input type="number" id="diferencia_almohadas" name="accesorios_plan[almohadas][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                    </div>
+                    <div id="section-bases-plan" class="conditional-section form-section">
+                        <h2 id="title-bases-plan">Plan Diario y Pendientes Día Anterior</h2>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="bases_plan_total" id="label-bases-plan">Plan Del Día</label><input type="number" id="bases_plan_total" name="bases_plan[plan_total]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="bases_producido" id="label-bases-prod">Producido</label><input type="number" id="bases_producido" name="bases_plan[producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-bases-diferencia">Pendiente</label><input type="number" id="diferencia_bases" name="bases_plan[diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                    </div>
+                    <div id="section-muebles-plan" class="conditional-section form-section">
+                        <h2 id="title-muebles-plan">Plan Diario y Pendientes Día Anterior</h2>
+                        <h4 class="subsection-title">Sofás</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="muebles_sofas_plan" id="label-muebsofa-plan">Plan Del Día Sofás</label><input type="number" id="muebles_sofas_plan" name="muebles_plan[sofas][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="muebles_sofas_producido" id="label-muebsofa-prod">Sofás Producido</label><input type="number" id="muebles_sofas_producido" name="muebles_plan[sofas][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-muebsofa-diferencia">Pendiente</label><input type="number" id="diferencia_sofas" name="muebles_plan[sofas][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                        <h4 class="subsection-title">Reclinables</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="muebles_reclinables_plan" id="label-muebrecl-plan">Plan Del Día Reclinables</label><input type="number" id="muebles_reclinables_plan" name="muebles_plan[reclinables][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="muebles_reclinables_producido" id="label-muebrecl-prod">Reclinables Producidos</label><input type="number" id="muebles_reclinables_producido" name="muebles_plan[reclinables][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-muebrecl-diferencia">Pendiente</label><input type="number" id="diferencia_reclinables" name="muebles_plan[reclinables][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                        <h4 class="subsection-title">Respaldos u Otros</h4>
+                        <div class="production-fields">
+                            <div class="form-group-inline"><label for="muebles_respaldos_plan" id="label-muebresp-plan">Plan Del Día Respaldos u otros</label><input type="number" id="muebles_respaldos_plan" name="muebles_plan[respaldos_otros][plan_dia]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label for="muebles_respaldos_producido" id="label-muebresp-prod">Respaldo u Otros Producido</label><input type="number" id="muebles_respaldos_producido" name="muebles_plan[respaldos_otros][producido]" min="0" placeholder="Ej: 45"></div>
+                            <div class="form-group-inline"><label id="label-muebresp-diferencia">Pendiente</label><input type="number" id="diferencia_respaldos" name="muebles_plan[respaldos_otros][diferencia]" min="0" placeholder="-" readonly></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="field-group-porc-ausentismo" class="conditional-section form-group standalone-field-group">
+                    <label for="porcentaje_ausentismo">Porcentaje De Ausentismo:</label>
+                    <input type="text" id="porcentaje_ausentismo" name="porcentaje_ausentismo" placeholder="Por ej., 23">
+                </div>
+                <div id="section-ausentismo" class="conditional-section form-section">
+                    <h2>Ausentismo Relevante</h2>
+                    <div id="ausentismo-container"></div>
+                    <button type="button" id="btnAnadirAusentismo" class="btn-add-row">+ Añadir Reporte de Ausentismo</button>
+                </div>
+                <div id="section-sucesos" class="conditional-section form-section">
+                    <h2>Sucesos</h2>
+                    <div id="sucesos-container"></div>
+                    <button type="button" id="btnAnadirSuceso" class="btn-add-row">+ Añadir Suceso</button>
+                    </div>
+
+                <div id="section-horas-extra" class="conditional-section form-section">
+                    <h2>Reporte de Horas Extra</h2>
+                    <div id="horas-extra-container">
+                        </div>
+                    <button type="button" id="btnAnadirHoraExtra" class="btn-add-row">+ Añadir Reporte Horas Extra</button>
+                </div>
+
+                <div id="section-observaciones" class="conditional-section form-section">
+                    <h2>Observaciones u Otros</h2>
+                    <div class="form-group">
+                        <textarea id="observaciones_otros" name="observaciones_otros" rows="3" placeholder="Ingrese sus observaciones aquí..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    <button type="submit" id="btnSubmitReport" class="btn-submit">Enviar Reporte Diario</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="success-message" class="form-card" style="display: none;">
+            <img src="correo-electronico.png" alt="Enviado">
+            <h2>Formulario Enviado</h2>
+        </div>
+    </main>
+    
+    <script src="configuracion.js"></script>
+    <script src="script.js"></script>
+    <script src="excelGenerator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof APP_CONFIG !== 'undefined') {
+                ExcelReportGenerator.init({
+                    form: document.getElementById('reunionForm'),
+                    fechaInput: document.getElementById('fecha'),
+                    areaSelect: document.getElementById('area'),
+                    cumplimientoHiddenInput: document.getElementById('cumplimiento'),
+                    sucesosContainer: document.getElementById('sucesos-container'),
+                    ausentismoContainer: document.getElementById('ausentismo-container'),
+                    textMappings: APP_CONFIG.textMappings,
+                    conditionalElements: {
+                        colchonesProd: document.getElementById('section-colchones-prod'),
+                        datosRelevante: document.getElementById('section-datos-relevante'),
+                        accesoriosPlan: document.getElementById('section-accesorios-plan'),
+                        basesPlan: document.getElementById('section-bases-plan'),
+                        mueblesPlan: document.getElementById('section-muebles-plan'),
+                        fibraScrap: document.getElementById('section-fibra-scrap'),
+                        espumaScrap: document.getElementById('section-espuma-scrap')
+                    }
+                });
+            } else {
+                console.error("El archivo configuracion.js no se cargó correctamente o APP_CONFIG no está definido.");
+            }
+        });
+    </script>
+</body>
+</html>

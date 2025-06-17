@@ -1,0 +1,643 @@
+/* ==========================================================================
+   1. VARIABLES CSS Y RESET BASE
+   ========================================================================== */
+:root {
+    --color-primary: #6A0F2C;
+    --color-primary-dark: #500A20;
+    --color-secondary: #007bff;
+    --color-secondary-dark: #0056b3;
+    --color-tercero: #229e79;
+    --color-tercero-dark: #1d8d6c;
+    --color-success: #28a745;
+    --color-success-dark: #218838;
+    --color-danger: #dc3545;
+    --color-danger-dark: #c82333;
+    --color-text: #333;
+    --color-text-light: #555;
+    --color-border: #ccc;
+    --color-border-light: #e0e0e0;
+    --color-bg-light: #fcfcfc;
+    --spacing-xs: 5px;
+    --spacing-sm: 8px;
+    --spacing-md: 10px;
+    --spacing-lg: 15px;
+    --spacing-xl: 20px;
+    --spacing-xxl: 30px;
+    --border-radius: 4px;
+    --border-radius-lg: 8px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-md: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 24px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. HEADER Y LAYOUT PRINCIPAL
+   ========================================================================== */
+.header-rosen {
+    background-color: var(--color-primary);
+    padding: clamp(15px, 4vw, 20px) 0;
+    text-align: center;
+
+}
+
+.logo {
+    max-height: clamp(90px, 25vw, 130px);
+    max-width: 90%;
+    height: auto;
+    width: auto;
+}
+
+.main-container {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px);
+    min-height: calc(100vh - 163px);
+    width: 100%;
+}
+
+.form-card {
+    background-color: #fff;
+    padding: clamp(20px, 4vw, 30px);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: min(700px, 95vw);
+    margin: 0 auto;
+}
+
+.form-card h1 {
+    color: var(--color-text);
+    text-align: left;
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: clamp(20px, 4vw, 24px);
+    font-weight: 600;
+}
+
+.form-card .subtitle {
+    color: var(--color-text-light);
+    text-align: left;
+    margin-bottom: clamp(20px, 4vw, 25px);
+    font-size: clamp(14px, 3vw, 16px);
+}
+
+/* ==========================================================================
+   3. ESTILOS BASE DE FORMULARIO
+   ========================================================================== */
+.form-group {
+    margin-bottom: clamp(15px, 3vw, 20px);
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: #444;
+    font-size: clamp(13px, 2.5vw, 14px);
+}
+
+.form-group input[type="datetime-local"],
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: clamp(8px, 2vw, 10px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: clamp(14px, 3vw, 16px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    resize: vertical;
+    min-height: clamp(60px, 10vw, 80px);
+    max-height: 200px;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+
+/* ==========================================================================
+   4. SECCIONES Y ESTRUCTURA
+   ========================================================================== */
+.form-section {
+    margin-top: clamp(25px, 5vw, 30px);
+    padding-top: clamp(15px, 3vw, 20px);
+    border-top: 1px solid var(--color-border-light);
+    width: 100%;
+}
+
+.form-card > .form-section:first-of-type {
+    border-top: none;
+    padding-top: var(--spacing-xs);
+    margin-top: clamp(20px, 4vw, 25px);
+}
+
+.form-section h2 {
+    font-size: clamp(16px, 3.5vw, 18px);
+    color: var(--color-text);
+    margin-bottom: clamp(12px, 3vw, 15px);
+    text-align: left;
+    font-weight: 600;
+}
+
+.subsection-title {
+    font-size: clamp(14px, 3vw, 16px);
+    color: var(--color-text);
+    margin-top: clamp(20px, 4vw, 25px);
+    margin-bottom: clamp(8px, 2vw, 10px);
+    font-weight: 600;
+}
+
+.subsection-title:first-of-type {
+    margin-top: clamp(12px, 3vw, 15px);
+}
+
+/* ==========================================================================
+   5. CAMPOS DE PRODUCCIÓN RESPONSIVOS
+   ========================================================================== */
+.production-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(10px, 2vw, 15px);
+    margin-bottom: clamp(8px, 2vw, 10px);
+    width: 100%;
+}
+#section-colchones-prod .production-fields {
+    grid-template-columns: repeat(4, 1fr);
+}
+#section-datos-relevante .production-fields {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.production-fields:last-child {
+    margin-bottom: 0;
+}
+
+.form-group-inline {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.form-group-inline label {
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: var(--color-text-light);
+}
+
+.form-group-inline input[type="number"] {
+    padding: clamp(6px, 1.5vw, 8px);
+    font-size: clamp(13px, 2.5vw, 15px);
+}
+
+/* ==========================================================================
+   6. SLIDER DE CUMPLIMIENTO
+   ========================================================================== */
+.form-group label[for="cumplimiento_slider"] {
+    margin-bottom: var(--spacing-sm);
+    font-size: clamp(13px, 2.5vw, 14px);
+}
+
+#cumplimiento_valor_display {
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: clamp(8px, 1.5vw, 10px);
+    background: #ddd;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.15s ease-in-out;
+    border-radius: 5px;
+    margin-top: var(--spacing-xs);
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: clamp(18px, 3vw, 20px);
+    height: clamp(18px, 3vw, 20px);
+    background: var(--color-secondary);
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb {
+    width: clamp(18px, 3vw, 22px);
+    height: clamp(18px, 3vw, 22px);
+    background: var(--color-secondary);
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   7. FILAS DINÁMICAS
+   ========================================================================== */
+.dynamic-row-entry {
+    padding: clamp(12px, 3vw, 15px);
+    border: 1px solid #e9e9e9;
+    border-radius: 6px;
+    margin-bottom: clamp(15px, 3vw, 20px);
+    background-color: var(--color-bg-light);
+    position: relative;
+    width: 100%;
+}
+
+.dynamic-row-title {
+    font-size: clamp(14px, 3vw, 16px);
+    color: #444;
+    margin: 0 0 clamp(12px, 3vw, 15px) 0;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.dynamic-row-entry .form-group {
+    margin-bottom: clamp(10px, 2vw, 12px);
+}
+
+.dynamic-row-entry label {
+    font-weight: 500;
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: #454545;
+}
+
+.dynamic-row-entry input[type="text"],
+.dynamic-row-entry input[type="number"],
+.dynamic-row-entry select,
+.dynamic-row-entry textarea {
+    font-size: clamp(13px, 2.5vw, 15px);
+    padding: clamp(6px, 1.5vw, 8px);
+}
+
+.dynamic-row-entry textarea {
+    min-height: clamp(35px, 6vw, 40px);
+}
+
+.dynamic-row-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: clamp(15px, 3vw, 20px) 0 clamp(8px, 2vw, 10px) 0;
+}
+
+.dynamic-row-entry:last-child {
+    margin-bottom: 0;
+}
+
+.dynamic-row-entry:last-child .dynamic-row-divider {
+    display: none;
+}
+
+/* ==========================================================================
+   8. CHECKBOXES Y CAMPOS ESPECIALES
+   ========================================================================== */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    min-width: clamp(16px, 3vw, 18px);
+    height: clamp(16px, 3vw, 18px);
+    margin: 0;
+}
+
+.checkbox-group .checkbox-label {
+    font-weight: 500;
+    margin: 0;
+    font-size: clamp(12px, 2.5vw, 14px);
+}
+
+.standalone-field-group {
+    margin: clamp(18px, 4vw, 20px) 0;
+    padding-top: clamp(18px, 4vw, 20px);
+    border-top: 1px solid var(--color-border-light);
+}
+
+#observaciones_otros {
+    min-height: clamp(70px, 12vw, 80px);
+}
+
+.horas-extra-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+    gap: clamp(8px, 2vw, 10px);
+    align-items: end;
+    width: 100%;
+}
+
+.horas-extra-fields .form-group {
+    margin-bottom: 0;
+}
+
+.horas-extra-fields input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   9. BOTONES
+   ========================================================================== */
+.btn-add-row,
+.btn-remove-row,
+.btn-submit {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-row {
+    padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
+    background-color: var(--color-secondary);
+    color: white;
+    font-size: clamp(13px, 2.5vw, 15px);
+    margin-top: var(--spacing-xs);
+    min-height: 36px;
+}
+
+.btn-add-row:hover {
+    background-color: var(--color-secondary-dark);
+    transform: translateY(-1px);
+}
+
+#btnAnadirSuceso {
+    background-color: var(--color-success);
+}
+
+#btnAnadirSuceso:hover {
+    background-color: var(--color-success-dark);
+}
+
+#btnAnadirHoraExtra {
+    background-color: var(--color-tercero);
+}
+
+#btnAnadirHoraExtra:hover {
+    background-color: var(--color-tercero-dark);
+}
+
+.btn-remove-row {
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 10px);
+    background-color: var(--color-danger);
+    color: white;
+    font-size: clamp(11px, 2vw, 13px);
+    margin-top: clamp(8px, 2vw, 10px);
+    min-height: 28px;
+}
+
+.btn-remove-row:hover {
+    background-color: var(--color-danger-dark);
+    transform: translateY(-1px);
+}
+
+.icon-button .trash-icon-placeholder {
+    margin-right: var(--spacing-xs);
+}
+
+.btn-submit {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 20px);
+    font-size: clamp(14px, 3vw, 16px);
+    width: 100%;
+    margin-top: clamp(8px, 2vw, 10px);
+    min-height: 44px;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-secondary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-reset {
+    position: fixed; /* MODIFICADO: De 'absolute' a 'fixed' */
+    top: 20px;
+    right: 20px; 
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: 1000;
+}
+
+.btn-reset img {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.btn-reset:hover {
+    transform: scale(1.1) rotate(45deg);
+    opacity: 0.85;
+}
+
+
+/* ==========================================================================
+   10. CONTROL DE VISIBILIDAD Y OTROS
+   ========================================================================== */
+.conditional-section {
+    display: none;
+}
+
+#btnSubmitReport {
+    display: none;
+}
+
+#success-message {
+    text-align: center;
+    display: none;
+}
+
+#success-message img {
+    max-width: clamp(80px, 15vw, 100px);
+    margin-bottom: clamp(15px, 3vw, 20px);
+}
+
+#success-message h2 {
+    font-size: clamp(20px, 4vw, 24px);
+    color: var(--color-success);
+    margin-bottom: clamp(8px, 2vw, 10px);
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+    #section-colchones-prod .production-fields {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+    .production-fields {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .horas-extra-fields {
+        grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr));
+    }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+    .main-container {
+        padding: clamp(15px, 3vw, 25px) clamp(20px, 4vw, 30px);
+    }
+    
+    .production-fields {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .production-fields, #section-colchones-prod .production-fields {
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(8px, 3vw, 12px);
+    }
+    
+    .horas-extra-fields {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-add-row,
+    .btn-submit {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .production-fields, #section-colchones-prod .production-fields {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-card {
+        padding: clamp(15px, 5vw, 20px);
+    }
+    
+    .main-container {
+        padding: clamp(10px, 3vw, 15px) clamp(5px, 2vw, 10px);
+    }
+}
+
+@media (min-width: 1200px) {
+    #section-colchones-prod .production-fields {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .form-card {
+        max-width: 800px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        border-width: 1px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #e9ecef;
+        --color-text-light: #adb5bd;
+        --color-border: #495057;
+        --color-border-light: #6c757d;
+        --color-bg-light: #343a40;
+    }
+    
+    .form-card {
+        background-color: #212529;
+        color: var(--color-text);
+    }
+    
+    .dynamic-row-entry {
+        background-color: var(--color-bg-light);
+        border-color: var(--color-border);
+    }
+}
+
+/* ==========================================================================
+   12. ESTILOS ADICIONALES PARA SLIDER SOBRE 100%
+   ========================================================================== */
+
+/* Cambia el color del manejador (la bolita) del slider a rojo */
+.slider.slider-over-100::-webkit-slider-thumb {
+    background: var(--color-danger); /* Usa la variable de color de peligro ya definida */
+}
+
+.slider.slider-over-100::-moz-range-thumb {
+    background: var(--color-danger);
+}
+
+/* Cambia el color del número del porcentaje a rojo */
+#cumplimiento_valor_display.text-over-100 {
+    color: var(--color-danger);
+    font-weight: bold;
+}
