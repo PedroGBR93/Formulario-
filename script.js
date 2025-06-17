@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (datosFormulario) {
                     submitButton.disabled = true;
                     submitButton.textContent = 'Enviando...';
-                    const googleScriptURL = 'https://script.google.com/a/macros/rosen.cl/s/AKfycbyz7hMot_cEM2TmfOsYGLsIEYjvmIzZ8Dkz5VWrup8OAKgreB4tppoig3TIiKKMDrkF/exec';
+                    const googleScriptURL = 'https://script.google.com/macros/s/AKfycbw84x56fSWFFEoH0wgNwpZa3oeOl_2EbvwEzV46HYAQdfXOcifOrgI6sRWdqx2fKoVICA/exec';
                     fetch(googleScriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(datosFormulario) })
                         .then(() => {
                             formContainer.style.display = 'none';
