@@ -1,30 +1,27 @@
 const APP_CONFIG = {
 
-    // Mensajes predefinidos para el correo electrónico por área
     mensajesPredefinidosPorArea: {
-        'colchones': 'Plan semanal: 8.800',
-        'accesorios': 'Plan de accesorios semanal: 21.744',
-        'bases': 'Plan de bases semanales: 7.498',
-        'muebles': 'Plan de muebles semanales: 1.271',
+        'colchones': 'Plan de colchones semanales 1950',
+        'accesorios': 'Plan de accesorios semanales: [Tu meta aquí]',
+        'bases': 'Plan de bases semanales: [Tu meta aquí]',
+        'muebles': 'Plan de muebles semanales: [Tu meta aquí]',
         'textil': '',
         'metalurgia': '',
         'fibra': '',
         'espuma': ''
     },
 
-    // Mapa de correos para el envío de reportes
     emailMap: {
-        colchones: 'felipe.ferreira@rosen.cl',
-        accesorios: 'cristobal.mansilla@rosen.cl',
-        bases: 'cristian.fincheira@rosen.cl',
-        muebles: 'victor.cortes@rosen.cl',
-        textil: 'susana.gutierrez@rosen.cl',
-        metalurgia: 'mauricio.parada@rosen.cl',
-        fibra: 'leonardo.morales@rosen.cl',
-        espuma: 'contardo.zambrano@rosen.cl'
+        colchones: 'joseluisduran9814@gmail.com',
+        accesorios: 'joseluisduran9814@gmail.com',
+        bases: 'joseluisduran9814@gmail.com',
+        muebles: 'joseluisduran9814@gmail.com',
+        textil: 'joseluisduran9814@gmail.com',
+        metalurgia: 'joseluisduran9814@gmail.com',
+        fibra: 'joseluisduran9814@gmail.com',
+        espuma: 'joseluisduran9814@gmail.com'
     },
 
-    // Configuración central de visibilidad de secciones por área
     configuracionDeVisibilidad: {
         'colchones': {
             cumplimiento: true,
@@ -34,6 +31,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             accesoriosPlan: false,
             basesPlan: false,
             mueblesPlan: false,
@@ -47,6 +45,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             colchonesProd: false,
             datosRelevante: false,
             basesPlan: false,
@@ -61,6 +60,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             colchonesProd: false,
             datosRelevante: false,
             accesoriosPlan: false,
@@ -75,6 +75,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             colchonesProd: false,
             datosRelevante: false,
             accesoriosPlan: false,
@@ -85,8 +86,9 @@ const APP_CONFIG = {
         'textil': {
             sucesos: true,
             horasExtra: true,
+            gestionesMejora: true,
             porcAusentismo: true,
-            ausentismo: false,
+            ausentismo: true,
             cumplimiento: false,
             colchonesProd: false,
             datosRelevante: false,
@@ -101,6 +103,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             cumplimiento: false,
             colchonesProd: false,
             datosRelevante: false,
@@ -116,6 +119,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             cumplimiento: false,
             colchonesProd: false,
             datosRelevante: false,
@@ -130,6 +134,7 @@ const APP_CONFIG = {
             porcAusentismo: true,
             ausentismo: true,
             horasExtra: true,
+            gestionesMejora: true,
             cumplimiento: false,
             colchonesProd: false,
             datosRelevante: false,
@@ -140,7 +145,6 @@ const APP_CONFIG = {
         }
     },
 
-    // Mapeo de textos para cambiar etiquetas en día Lunes
     textMappings: {
         "title-colchones-prod": ["Colchones Producción Del Día", "Colchones Producción De La Semana"],
         "title-accesorios-plan": ["Plan Diario y Pendientes Día Anterior", "Plan Semanal y Pendientes Semana Anterior"],
@@ -165,25 +169,38 @@ const APP_CONFIG = {
         "label-muebresp-prod": ["Respaldo u Otros Producido", "Respaldo u Otros Producido Semanal"],
     },
 
-    // Mapeo de sub-áreas para el reporte de Horas Extra
     subAreaMappings: {
         colchones: ["Cerrado", "Emsamblaje", "Vulcanizado", "Otra Area"],
-        accesorios: ["Area de Plumones", "Area de Almohada", "Area de Sábana","Area General"],
+        accesorios: ["Accesorio Área 1", "Accesorio Área 2", "Otro Accesorio"],
         bases: ["Tapizado Convencional", "Tapizado Funcional ", "Funda", "Clavado De Parrilla"],
         muebles: ["Corte", "Confección", "Pegado de Cojines", "Llenado", "Armado Estructura", "Tapizado", "Embalaje", "Celula Reclinables"],
         textil: ["Multiaguja", "Uniaguja", "Encintado","Confección Fuelle","Area General"],
         metalurgia: ["Boney", "Cosisoft", "Pocket", "Area General"],
-        fibra: ["Masia 1", "Masia 2", "Masia 3", "Masia 4", "Desilachado", "Area General"],
-        espuma: ["Laminado de rollo", "Inyectora", "Maxfoam", "Sector Carrusel", "Sector CNC", "Aglomerado", "Lamina Confort", "Enfundado Almohadas"]
+        fibra: ["Masia 1", "Masia 2", "Masia 3", "Masia 4", "Deshilachado", "Area General"],
+        espuma: ["Espuma Área 1", "Espuma Área 2", "Otro Espuma"]
     },
 
-    // Opciones para el <select> de Tipo de Incidente en Sucesos
     tipoIncidenteOptions: [
-        "Falla De Máquna", "Producto Con Falla", "Producto Pendiente","Planificación", "Por Personal", "Seguridad", "Gestion De Mejora", "Otro Problema"
+        "Falla De Maquina", "Producto Con Falla", "Producto Pendiente","Planificación", "Por Personal", "Seguridad", "Gestion De Mejora", "Otro Problema"
     ],
 
-    // Opciones para el <select> de Área Responsable en Sucesos
     areaResponsableOptions: [
         "Bases", "Ensamblado Colchon", "Espuma", "Fibra", "Materia Prima","Mueble", "Proveedor", "Textil Accesorio", "Textil Colchon", "Mantención","Otra Area Responsable", "Sin Responsable"
-    ]
+    ],
+    maquinaFallaMappings: {
+        'T. Bonn. Huajian': ['2085', '2087', '2209', '1597', '2086', '2208', '2383', '2086', '2384'],
+        'P. Bonnell': ['1546'],
+        'T. Bonn. Spuhl': ['0813','2001'],
+        'T. Bonn. Fides': ['2171'],
+        'T. Cosiflex': ['0029'],
+        'Espiralera Rosen': ['1412'],
+        'T. Cosisoft Huajian': ['2922'],
+        'T. Cosisoft Spuhl': ['0661'],
+        'E Pocket Springform': ['2221'],
+        'E. Pocket Huajian': ['2668', '2808', '2915','2386'],
+        'Embalado Parrillas': ['2321']
+    },
+    tipoFallaMaquinaOptions: [
+        "electrica", "mecanica", "configuracion", "otro"
+    ],
 };
