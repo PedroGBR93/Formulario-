@@ -43,14 +43,14 @@
 
                 <div id="section-fibra-scrap" class="conditional-section form-section standalone-field-group">
                     <div class="form-group">
-                        <label for="ingreso_scrap_fibra">Ingreso Diario De Scrap En Kg:</label>
+                        <label for="ingreso_scrap_fibra">Ingreso Diario De Scrap En Metro:</label>
                         <input type="number" id="ingreso_scrap_fibra" name="ingreso_scrap_fibra" min="0" placeholder="Ej: 150">
                     </div>
                 </div>
 
                 <div id="section-espuma-scrap" class="conditional-section form-section standalone-field-group">
                     <div class="form-group">
-                        <label for="salida_scrap_espuma">Salida Diaria De Scrap En Kg:</label>
+                        <label for="salida_scrap_espuma">Salida Diaria De Scrap En Metro:</label>
                         <input type="number" id="salida_scrap_espuma" name="salida_scrap_espuma" min="0" placeholder="Ej: 120">
                     </div>
                 </div>
@@ -150,6 +150,25 @@
                     <div id="horas-extra-container">
                         </div>
                     <button type="button" id="btnAnadirHoraExtra" class="btn-add-row">+ Añadir Reporte Horas Extra</button>
+                </div>
+                <div id="section-horas-extra" class="conditional-section form-section">
+                    <h2>Reporte de Horas Extra</h2>
+                    <div id="horas-extra-container">
+                        </div>
+                    <button type="button" id="btnAnadirHoraExtra" class="btn-add-row">+ Añadir Reporte Horas Extra</button>
+                </div>
+
+                <div id="section-gestiones-mejora" class="conditional-section form-section">
+                    <h2>Gestiones de Mejora</h2>
+                    <div id="gestiones-mejora-container"></div>
+                    <button type="button" id="btnAnadirGestion" class="btn-add-row">+ Añadir Gestión de Mejora</button>
+                </div>
+
+                <div id="section-observaciones" class="conditional-section form-section">
+                    <h2>Observaciones u Otros</h2>
+                    <div class="form-group">
+                        <textarea id="observaciones_otros" name="observaciones_otros" rows="3" placeholder="Ingrese sus observaciones aquí..."></textarea>
+                    </div>
                 </div>
 
                 <div id="section-observaciones" class="conditional-section form-section">
