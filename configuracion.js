@@ -15,7 +15,7 @@ const APP_CONFIG = {
         colchones: 'joseluisduran9814@gmail.com',
         accesorios: 'joseluisduran9814@gmail.com',
         bases: 'joseluisduran9814@gmail.com',
-        muebles: 'joseluisduran9814@gmail.com',
+        muebles: 'victor.cortes@rosen.cl',
         textil: 'joseluisduran9814@gmail.com',
         metalurgia: 'joseluisduran9814@gmail.com',
         fibra: 'joseluisduran9814@gmail.com',
