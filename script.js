@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const datosFormulario = recolectarDatosDelFormulario();
         if (datosFormulario) {
             submitButton.disabled = true; submitButton.textContent = 'Enviando...';
-            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwJBxZwZAXnXVe15qqGhnBQqGcDRR7CGF3uQEFOUJItTDrky8Z2dROfyvkoZ52b3uGQwg/exec';
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz8KMZ4GT5K0XlelWIEsKmzL7L8tkxdWMMKwB1lfj_54a2DXrEb6nfscIT894ED6KCB/exec';
             fetch(googleScriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(datosFormulario) })
                 .then(() => {
                     formContainer.style.display = 'none'; successMessageContainer.style.display = 'block';
