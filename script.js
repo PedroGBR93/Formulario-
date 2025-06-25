@@ -50,6 +50,49 @@ document.addEventListener('DOMContentLoaded', () => {
     let gestionIdCounter = 0;
     let isLoading = false;
 
+    // --- LÓGICA DE CÁLCULO DE PENDIENTES ---
+    const calculosAutomaticos = [
+        { plan: 'plan_dia_accesorio_gen', prod: 'producido_accesorio_gen', label: 'label-accgen-diferencia', output: 'diferencia_accesorio_gen', baseName: 'Accesorios' },
+        { plan: 'plan_dia_plumones', prod: 'producido_plumones', label: 'label-accplum-diferencia', output: 'diferencia_plumones', baseName: 'Plumones' },
+        { plan: 'plan_dia_almohadas', prod: 'producido_almohadas', label: 'label-accalm-diferencia', output: 'diferencia_almohadas', baseName: 'Almohadas' },
+        { plan: 'bases_plan_total', prod: 'bases_producido', label: 'label-bases-diferencia', output: 'diferencia_bases', baseName: 'Bases' },
+        { plan: 'muebles_sofas_plan', prod: 'muebles_sofas_producido', label: 'label-muebsofa-diferencia', output: 'diferencia_sofas', baseName: 'Sofás' },
+        { plan: 'muebles_reclinables_plan', prod: 'muebles_reclinables_producido', label: 'label-muebrecl-diferencia', output: 'diferencia_reclinables', baseName: 'Reclinables' },
+        { plan: 'muebles_respaldos_plan', prod: 'muebles_respaldos_producido', label: 'label-muebresp-diferencia', output: 'diferencia_respaldos', baseName: 'Respaldos' }
+    ];
+
+    function calcularYActualizarDiferencia(planInput, prodInput, label, output, baseName) {
+        if (!planInput || !prodInput || !label || !output) return;
+        const plan = parseFloat(planInput.value) || 0;
+        const prod = parseFloat(prodInput.value) || 0;
+        const diferencia = plan - prod;
+        if (diferencia > 0) {
+            label.textContent = `Pendiente`;
+            output.value = diferencia;
+        } else if (diferencia < 0) {
+            label.textContent = `Avanzado`;
+            output.value = Math.abs(diferencia);
+        } else {
+            label.textContent = `Pendiente`;
+            output.value = 0;
+        }
+    }
+
+    function inicializarCalculosAutomaticos() {
+        calculosAutomaticos.forEach(calc => {
+            const planInput = document.getElementById(calc.plan);
+            const prodInput = document.getElementById(calc.prod);
+            const label = document.getElementById(calc.label);
+            const output = document.getElementById(calc.output);
+            if (planInput && prodInput && label && output) {
+                const updateFn = () => calcularYActualizarDiferencia(planInput, prodInput, label, output, calc.baseName);
+                planInput.addEventListener('input', updateFn);
+                prodInput.addEventListener('input', updateFn);
+                updateFn();
+            }
+        });
+    }
+    
     function guardarDatosEnLocalStorage() {
         if (isLoading) return;
         const formData = new FormData(form);
@@ -61,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
     }
-
+    
     function cargarDatosDesdeLocalStorage() {
         isLoading = true;
         try {
@@ -110,9 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fechaInput.value) manejarCambioDeFecha();
 
         } finally {
-            isLoading = false;
+            isLoading = false; 
         }
     }
+
 
     // --- LÓGICA DE INTERFAZ Y VISUALIZACIÓN ---
     function manejarCambioDeFecha() {
@@ -261,10 +305,38 @@ document.addEventListener('DOMContentLoaded', () => {
         datos.porcentajeCumplimiento = cumplimientoHiddenInput ? (cumplimientoHiddenInput.value + '%') : "";
         datos.emailDestinatario = APP_CONFIG.emailMap[datos.nombreAreaHoja] || '';
         datos.mensajePredefinido = APP_CONFIG.mensajesPredefinidosPorArea[datos.nombreAreaHoja] || '';
+        
+        // --- INICIO DE LA SECCIÓN CORREGIDA ---
+        const getDiferenciaValue = (planName, prodName) => {
+            const plan = parseFloat(formData.get(planName)) || 0;
+            const prod = parseFloat(formData.get(prodName)) || 0;
+            return plan - prod;
+        };
+
+        if (conditionalElements.accesoriosPlan.style.display !== 'none') {
+            datos.accesoriosPlan = {
+                general: { plan_dia: formData.get('accesorios_plan[general][plan_dia]'), producido: formData.get('accesorios_plan[general][producido]'), pendiente: getDiferenciaValue('accesorios_plan[general][plan_dia]', 'accesorios_plan[general][producido]') },
+                plumones: { plan_dia: formData.get('accesorios_plan[plumones][plan_dia]'), producido: formData.get('accesorios_plan[plumones][producido]'), pendiente: getDiferenciaValue('accesorios_plan[plumones][plan_dia]', 'accesorios_plan[plumones][producido]') },
+                almohadas: { plan_dia: formData.get('accesorios_plan[almohadas][plan_dia]'), producido: formData.get('accesorios_plan[almohadas][producido]'), pendiente: getDiferenciaValue('accesorios_plan[almohadas][plan_dia]', 'accesorios_plan[almohadas][producido]') }
+            };
+        }
+        if (conditionalElements.basesPlan.style.display !== 'none') {
+            datos.basesPlan = { planTotal: formData.get('bases_plan[plan_total]'), producido: formData.get('bases_plan[producido]'), pendientes: getDiferenciaValue('bases_plan[plan_total]', 'bases_plan[producido]') };
+        }
+        if (conditionalElements.mueblesPlan.style.display !== 'none') {
+            datos.mueblesPlan = {
+                sofas: { plan_dia: formData.get('muebles_plan[sofas][plan_dia]'), producido: formData.get('muebles_plan[sofas][producido]'), pendiente: getDiferenciaValue('muebles_plan[sofas][plan_dia]', 'muebles_plan[sofas][producido]') },
+                reclinables: { plan_dia: formData.get('muebles_plan[reclinables][plan_dia]'), producido: formData.get('muebles_plan[reclinables][producido]'), pendiente: getDiferenciaValue('muebles_plan[reclinables][plan_dia]', 'muebles_plan[reclinables][producido]') },
+                respaldosOtros: { plan_dia: formData.get('muebles_plan[respaldos_otros][plan_dia]'), producido: formData.get('muebles_plan[respaldos_otros][producido]'), pendiente: getDiferenciaValue('muebles_plan[respaldos_otros][plan_dia]', 'muebles_plan[respaldos_otros][producido]') }
+            };
+        }
+        // --- FIN DE LA SECCIÓN CORREGIDA ---
+
         if (conditionalElements.fibraScrap.style.display !== 'none') { datos.ingresoScrapFibra = formData.get('ingreso_scrap_fibra'); }
         if (conditionalElements.espumaScrap.style.display !== 'none') { datos.salidaScrapEspuma = formData.get('salida_scrap_espuma'); }
         if (conditionalElements.colchonesProd.style.display !== 'none') { datos.colchonesProd = { planDia: formData.get('colchones_prod[plan_dia]'), producido: formData.get('colchones_prod[producido]'), porVulcanizar: formData.get('colchones_prod[por_vulcanizar]'), porCerrar: formData.get('colchones_prod[por_cerrar]') }; }
         if (conditionalElements.datosRelevante.style.display !== 'none') { datos.datosRelevanteColchones = { personalCerrado: formData.get('datos_relevante[colchones][personal_cerrado]'), colchonesReparados: formData.get('datos_relevante[colchones][reparados]'), esperaReparacion: formData.get('datos_relevante[colchones][espera]') };}
+        
         datos.sucesos = [];
         sucesosContainer.querySelectorAll('.dynamic-row-entry').forEach(entry => { 
             const id = entry.id.split('_').pop(); 
@@ -314,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const datosFormulario = recolectarDatosDelFormulario();
         if (datosFormulario) {
             submitButton.disabled = true; submitButton.textContent = 'Enviando...';
-            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz8KMZ4GT5K0XlelWIEsKmzL7L8tkxdWMMKwB1lfj_54a2DXrEb6nfscIT894ED6KCB/exec';
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwJBxZwZAXnXVe15qqGhnBQqGcDRR7CGF3uQEFOUJItTDrky8Z2dROfyvkoZ52b3uGQwg/exec';
             fetch(googleScriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(datosFormulario) })
                 .then(() => {
                     formContainer.style.display = 'none'; successMessageContainer.style.display = 'block';
@@ -327,4 +399,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     cargarDatosDesdeLocalStorage();
+    inicializarCalculosAutomaticos();
 });
