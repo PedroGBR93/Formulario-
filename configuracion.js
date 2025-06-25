@@ -12,14 +12,14 @@ const APP_CONFIG = {
     },
 
     emailMap: {
-        colchones: 'joseluisduran9814@gmail.com',
-        accesorios: 'joseluisduran9814@gmail.com',
-        bases: 'joseluisduran9814@gmail.com',
+        colchones: 'felipe.ferreira@rosen.cl',
+        accesorios: 'cristobal.mansilla@rosen.cl',
+        bases: 'cristian.fincheira@rosen.cl',
         muebles: 'victor.cortes@rosen.cl',
-        textil: 'joseluisduran9814@gmail.com',
-        metalurgia: 'joseluisduran9814@gmail.com',
-        fibra: 'joseluisduran9814@gmail.com',
-        espuma: 'joseluisduran9814@gmail.com'
+        textil: 'susana.gutierrez@rosen.cl',
+        metalurgia: 'mauricio.parada@rosen.cl',
+        fibra: 'leonardo.morales@rosen.cl',
+        espuma: 'contardo.zambrano@rosen.cl'
     },
 
     configuracionDeVisibilidad: {
