@@ -306,7 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
         datos.emailDestinatario = APP_CONFIG.emailMap[datos.nombreAreaHoja] || '';
         datos.mensajePredefinido = APP_CONFIG.mensajesPredefinidosPorArea[datos.nombreAreaHoja] || '';
         
-        // --- INICIO DE LA SECCIÓN CORREGIDA ---
         const getDiferenciaValue = (planName, prodName) => {
             const plan = parseFloat(formData.get(planName)) || 0;
             const prod = parseFloat(formData.get(prodName)) || 0;
@@ -315,22 +314,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (conditionalElements.accesoriosPlan.style.display !== 'none') {
             datos.accesoriosPlan = {
-                general: { plan_dia: formData.get('accesorios_plan[general][plan_dia]'), producido: formData.get('accesorios_plan[general][producido]'), pendiente: getDiferenciaValue('accesorios_plan[general][plan_dia]', 'accesorios_plan[general][producido]') },
-                plumones: { plan_dia: formData.get('accesorios_plan[plumones][plan_dia]'), producido: formData.get('accesorios_plan[plumones][producido]'), pendiente: getDiferenciaValue('accesorios_plan[plumones][plan_dia]', 'accesorios_plan[plumones][producido]') },
-                almohadas: { plan_dia: formData.get('accesorios_plan[almohadas][plan_dia]'), producido: formData.get('accesorios_plan[almohadas][producido]'), pendiente: getDiferenciaValue('accesorios_plan[almohadas][plan_dia]', 'accesorios_plan[almohadas][producido]') }
+                general: { plan_dia: formData.get('accesorios_plan[general][plan_dia]'), producido: formData.get('accesorios_plan[general][producido]'), pendiente: getDiferenciaValue('plan_dia_accesorio_gen', 'producido_accesorio_gen') },
+                plumones: { plan_dia: formData.get('accesorios_plan[plumones][plan_dia]'), producido: formData.get('accesorios_plan[plumones][producido]'), pendiente: getDiferenciaValue('plan_dia_plumones', 'producido_plumones') },
+                almohadas: { plan_dia: formData.get('accesorios_plan[almohadas][plan_dia]'), producido: formData.get('accesorios_plan[almohadas][producido]'), pendiente: getDiferenciaValue('plan_dia_almohadas', 'producido_almohadas') }
             };
         }
         if (conditionalElements.basesPlan.style.display !== 'none') {
-            datos.basesPlan = { planTotal: formData.get('bases_plan[plan_total]'), producido: formData.get('bases_plan[producido]'), pendientes: getDiferenciaValue('bases_plan[plan_total]', 'bases_plan[producido]') };
+            datos.basesPlan = { planTotal: formData.get('bases_plan[plan_total]'), producido: formData.get('bases_plan[producido]'), pendientes: getDiferenciaValue('bases_plan_total', 'bases_producido') };
         }
         if (conditionalElements.mueblesPlan.style.display !== 'none') {
             datos.mueblesPlan = {
-                sofas: { plan_dia: formData.get('muebles_plan[sofas][plan_dia]'), producido: formData.get('muebles_plan[sofas][producido]'), pendiente: getDiferenciaValue('muebles_plan[sofas][plan_dia]', 'muebles_plan[sofas][producido]') },
-                reclinables: { plan_dia: formData.get('muebles_plan[reclinables][plan_dia]'), producido: formData.get('muebles_plan[reclinables][producido]'), pendiente: getDiferenciaValue('muebles_plan[reclinables][plan_dia]', 'muebles_plan[reclinables][producido]') },
-                respaldosOtros: { plan_dia: formData.get('muebles_plan[respaldos_otros][plan_dia]'), producido: formData.get('muebles_plan[respaldos_otros][producido]'), pendiente: getDiferenciaValue('muebles_plan[respaldos_otros][plan_dia]', 'muebles_plan[respaldos_otros][producido]') }
+                sofas: { plan_dia: formData.get('muebles_plan[sofas][plan_dia]'), producido: formData.get('muebles_plan[sofas][producido]'), pendiente: getDiferenciaValue('muebles_sofas_plan', 'muebles_sofas_producido') },
+                reclinables: { plan_dia: formData.get('muebles_plan[reclinables][plan_dia]'), producido: formData.get('muebles_plan[reclinables][producido]'), pendiente: getDiferenciaValue('muebles_reclinables_plan', 'muebles_reclinables_producido') },
+                respaldosOtros: { plan_dia: formData.get('muebles_plan[respaldos_otros][plan_dia]'), producido: formData.get('muebles_plan[respaldos_otros][producido]'), pendiente: getDiferenciaValue('muebles_respaldos_plan', 'muebles_respaldos_producido') }
             };
         }
-        // --- FIN DE LA SECCIÓN CORREGIDA ---
 
         if (conditionalElements.fibraScrap.style.display !== 'none') { datos.ingresoScrapFibra = formData.get('ingreso_scrap_fibra'); }
         if (conditionalElements.espumaScrap.style.display !== 'none') { datos.salidaScrapEspuma = formData.get('salida_scrap_espuma'); }
@@ -367,6 +365,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (horasExtraContainer) { horasExtraContainer.querySelectorAll('.dynamic-row-entry').forEach(entry => { const id = entry.id.split('_').pop(); datos.horasExtra.push({ numeroHoras: formData.get(`horas_extra[${id}][numero_horas]`), cantidadPersonal: formData.get(`horas_extra[${id}][cantidad_personal]`), subarea: formData.get(`horas_extra[${id}][subarea]`), motivo: formData.get(`horas_extra[${id}][motivo]`) }); }); }
         datos.gestionesMejora = [];
         if (gestionesMejoraContainer) { gestionesMejoraContainer.querySelectorAll('.dynamic-row-entry').forEach(entry => { const id = entry.id.split('_').pop(); const descripcion = formData.get(`gestiones_mejora[${id}][descripcion]`); if (descripcion) { datos.gestionesMejora.push({ descripcion: descripcion }); } }); }
+        
+        // --- INICIO DE LA LÍNEA CORREGIDA ---
+        datos.observaciones = formData.get('observaciones_otros');
+        // --- FIN DE LA LÍNEA CORREGIDA ---
+        
         return datos;
     }
 
@@ -386,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const datosFormulario = recolectarDatosDelFormulario();
         if (datosFormulario) {
             submitButton.disabled = true; submitButton.textContent = 'Enviando...';
-            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz8KMZ4GT5K0XlelWIEsKmzL7L8tkxdWMMKwB1lfj_54a2DXrEb6nfscIT894ED6KCB/exec';
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwJBxZwZAXnXVe15qqGhnBQqGcDRR7CGF3uQEFOUJItTDrky8Z2dROfyvkoZ52b3uGQwg/exec';
             fetch(googleScriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(datosFormulario) })
                 .then(() => {
                     formContainer.style.display = 'none'; successMessageContainer.style.display = 'block';
